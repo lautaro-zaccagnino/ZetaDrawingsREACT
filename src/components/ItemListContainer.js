@@ -1,11 +1,15 @@
 import React from 'react'
+import ItemCount from './ItemCount'
 
 export const ItemListContainer = () => {
+
+    const mensajeGracias = (contador) => {
+        alert("Gracias por tu compra de: " + contador + " unidades")
+    }
+
     return(
         <section style={styles.section}>
-            <h1 style={styles.headOne}>Hola, buen Tutor</h1>
-            <h2>Todo bien?</h2>
-            <p>Siéntase bienvenido a mi página para este desafío!</p>
+            <ItemCount stock={5} initial={1} onAdd={mensajeGracias}/>
         </section>
     )
 }
@@ -19,8 +23,5 @@ const styles={
         width: "90vw",
         height: 400,
         backgroundColor: "lightgrey",
-    },
-    headOne:{
-        fontSize: 32,
     }
 }
