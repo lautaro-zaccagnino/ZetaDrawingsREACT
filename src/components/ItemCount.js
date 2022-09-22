@@ -66,6 +66,7 @@ const styles={
         backgroundColor: " #f3f3f3",
         height: 220,
         borderRadius: 5,
+        width: 220,
     },
     h:{
         fontSize: 18,
