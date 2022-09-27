@@ -1,20 +1,25 @@
 import React from 'react'
 import logo from '../assets/ZD.jpg'
-/* import { CartWidget } from "./CartWidget" */
+import { NavLink } from "react-router-dom"
+
+const categorias = [
+    {id:0, nombre:"Actores", ruta:"/categoria/actores"},
+    {id:1, nombre:"Cantantes", ruta:"/categoria/cantantes"},
+    {id:2, nombre:"Naturaleza", ruta:"/categoria/naturaleza"},
+]
 
 const NavBar = ({children}) => {
     return (
         <header style={styles.container}>
         <div style={styles.NavImg}>
-            <a href=""><img src={logo} alt="logo" style={styles.imagen}/></a>
+        <NavLink to={"/"}><img src={logo} alt="logo" style={styles.imagen}/></NavLink>
             <h1>Zeta Drawings</h1>
         </div>
         <nav>
-            <a href="" style={styles.anchors}>Colección</a>
-            <a href="" style={styles.anchors}>Youtube</a>
-            <a href="" style={styles.anchors}>Sobre mí</a>
-            <a href="" style={styles.anchors}>Contacto</a>
-            <a href="" style={styles.anchors}>{children}</a>
+            {categorias.map((categoria) => 
+            {return (<NavLink key={categoria.id} style={styles.anchors} to={categoria.ruta}>{categoria.nombre} </NavLink>)}
+            )}
+             <NavLink style={styles.anchors} to="/cart">{children}</NavLink>
         </nav>
  
         </header>

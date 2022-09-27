@@ -1,22 +1,31 @@
 import React from "react"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from './components/NavBar';
 import { ItemListContainer } from './Containers/ItemListContainer/ItemListContainer';
 import { CartWidget } from "./components/CartWidget"
 import ItemDetailContainer from './Containers/ItemDetailContainer/ItemDetailContainer';
-
+import { Cart } from './components/Cart'
 const App = () => {
   return(
     <>
-      <NavBar>
-        <CartWidget />
-      </NavBar>
 
-      <main style={styles.main}>
-        <section style={styles.section}>
-          <ItemListContainer style={styles.list}/>
-          <ItemDetailContainer />
-        </section>
-      </main>
+      <BrowserRouter>
+        <NavBar>
+          <CartWidget />
+        </NavBar>
+        <main style={styles.main}>
+          <section style={styles.section}>
+            <Routes>
+                <Route path='/' element={<ItemListContainer style={styles.list}/>} />
+
+                <Route path='/categoria/:IdCategoria' element={<ItemListContainer style={styles.list}/>} />
+                <Route path='/producto/:IdProducto' element={<ItemDetailContainer/>} />
+                <Route path='/cart' element={<Cart/>} />
+
+            </Routes>
+          </section>
+        </main>
+      </BrowserRouter>
     </>
   )
 }
