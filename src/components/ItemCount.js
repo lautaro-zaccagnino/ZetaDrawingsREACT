@@ -6,13 +6,13 @@ const ItemCount = ({stock, initial, onAdd}) =>{
 
     const sumar = () =>{
         if(contador < stock){
-            onSumar();
+            setContador(contador + 1);
         }
     }
 
     const restar = () =>{
         if(contador > 1){
-            onRemove();
+            setContador(contador - 1);
         }
     }
 
@@ -22,14 +22,6 @@ const ItemCount = ({stock, initial, onAdd}) =>{
 
 
     /////////////////////////////////
-
-    const onSumar = () =>{
-        setContador(contador + 1);
-    }
-
-    const onRemove = () =>{
-        setContador(contador - 1);
-    }
 
     const Carrito = () =>{
         if(stock > 0){

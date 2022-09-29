@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ItemCount from '../../components/ItemCount'
+import FinCompra from '../../components/FinCompra'
 import liv from "../../assets/LivTyler.jpg";
 import charly from "../../assets/Charly.jpg";
 import caballo from "../../assets/caballo.jpg";
@@ -24,7 +25,8 @@ const customFetch = (data, IdProducto) =>{
                         res(product)
                         console.log(product)
                     } else{
-                        res(data)
+                        const product = [data.find((Item) => Item.id === 0)]
+                        res(product)
                     }
                 }
             } catch(err){
@@ -38,12 +40,14 @@ const customFetch = (data, IdProducto) =>{
 
 
 function ItemDetail(){
-    const mensajeGracias = (contador) => {
-        alert("Se añadieron al carrito: " + contador + " unidad(es)")
-    }
     let { IdProducto } = useParams();
 
+    const compra = () =>{
+        setCarrito(false)
+    }
     const [products, setProducts] = useState([]);
+    const [carrito, setCarrito] = useState([true]);
+
     useEffect(()=>{
         customFetch(Item, parseInt(IdProducto))
         .then((data)=>{
@@ -65,7 +69,12 @@ function ItemDetail(){
                         <h2>{product.nombre}</h2>
                         <h3>${product.precio}</h3>
                         <p style={styles.p}>{product.descripcion}</p>
-                        <ItemCount stock={5} initial={1} onAdd={mensajeGracias}/>
+                        
+                        {carrito ?
+                        (<ItemCount stock={5} initial={1} onAdd={compra}/>)
+                        : (<FinCompra/>)
+                            
+                        }
                     </div>
                 </div>
             )}
