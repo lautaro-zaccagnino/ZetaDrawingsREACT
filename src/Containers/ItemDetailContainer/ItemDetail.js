@@ -1,17 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import ItemCount from '../../components/ItemCount'
 import FinCompra from '../../components/FinCompra'
 import liv from "../../assets/LivTyler.jpg";
 import charly from "../../assets/Charly.jpg";
 import caballo from "../../assets/caballo.jpg";
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
+import { Context} from "../../components/Context/CartContext"
 
-
-const Item = [
+const Items = [
     {id:0, nombre: "Liv Tyler", img: liv, descripcion: "Dibujo de la actriz Liv Tyler, de la famosa saga El Señor de los Anillos, donde desempeña el papel de Arwen", precio: 2500},
     {id:1, nombre: "Charly García", img: charly, descripcion: "Dibujo del famoso cantante argentino, líder las bandas Serú Girán y Sui Géneris.", precio: 2300},
     {id:2, nombre: "Caballo re facha", img: caballo, descripcion: "Un caballito re facha amigo, compralo dale. Dale ¿Qué esperás? Compralo.", precio: 3000}
 ]
+
 
 const customFetch = (data, IdProducto) =>{
     return new Promise((res, rej) =>
@@ -21,11 +22,10 @@ const customFetch = (data, IdProducto) =>{
                 if(data){
 
                     if(IdProducto){
-                        const product = [data.find((Item) => Item.id === IdProducto)]
+                        const product = [data.find((Items) => Items.id === IdProducto)]
                         res(product)
-                        console.log(product)
                     } else{
-                        const product = [data.find((Item) => Item.id === 0)]
+                        const product = [data.find((Items) => Items.id === 0)]
                         res(product)
                     }
                 }
@@ -42,14 +42,12 @@ const customFetch = (data, IdProducto) =>{
 function ItemDetail(){
     let { IdProducto } = useParams();
 
-    const compra = () =>{
-        setCarrito(false)
-    }
+    
     const [products, setProducts] = useState([]);
     const [carrito, setCarrito] = useState([true]);
 
     useEffect(()=>{
-        customFetch(Item, parseInt(IdProducto))
+        customFetch(Items, parseInt(IdProducto))
         .then((data)=>{
             setProducts(data);
         })
@@ -59,16 +57,24 @@ function ItemDetail(){
 
     }, [IdProducto]);
 
+    const { cart, addCart} = useContext(Context)
+    
+    const compra = (contador) =>{
+        setCarrito(false)
+        addCart(products, contador)
+    }
+    console.dir(cart)
+    
     return(
         <section style={styles.section}>
             <h1>Detalles</h1>
-            {products.map((product)=>
+            {products.map((productshow)=>
                 <div style={styles.all}> 
-                    <img src={product.img} alt={product.nombre} style={styles.img}></img>
-                    <div key={product.id} style={styles.right}>
-                        <h2>{product.nombre}</h2>
-                        <h3>${product.precio}</h3>
-                        <p style={styles.p}>{product.descripcion}</p>
+                    <img src={productshow.img} alt={productshow.nombre} style={styles.img}></img>
+                    <div key={productshow.id} style={styles.right}>
+                        <h2>{productshow.nombre}</h2>
+                        <h3>${productshow.precio}</h3>
+                        <p style={styles.p}>{productshow.descripcion}</p>
                         
                         {carrito ?
                         (<ItemCount stock={5} initial={1} onAdd={compra}/>)

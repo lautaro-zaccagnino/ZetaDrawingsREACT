@@ -5,11 +5,15 @@ import { ItemListContainer } from './Containers/ItemListContainer/ItemListContai
 import { CartWidget } from "./components/CartWidget"
 import ItemDetailContainer from './Containers/ItemDetailContainer/ItemDetailContainer';
 import { Cart } from './components/Cart'
+import CartProvider from "./components/Context/CartContext";
+
 const App = () => {
   return(
     <>
 
       <BrowserRouter>
+      <CartProvider>
+
         <NavBar>
           <CartWidget />
         </NavBar>
@@ -25,6 +29,7 @@ const App = () => {
             </Routes>
           </section>
         </main>
+      </CartProvider>
       </BrowserRouter>
     </>
   )
