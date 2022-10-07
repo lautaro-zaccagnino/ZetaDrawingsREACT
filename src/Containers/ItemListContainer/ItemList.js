@@ -1,62 +1,41 @@
 import React, {useEffect, useState} from 'react';
+import { productos } from "../../assets/productos";
+import { customFetch } from "../../assets/customFetch"
 import Item from "./Item";
-import { useParams, NavLink } from "react-router-dom"
-
-
-const customFetch = (data, IdCategoria) =>{
-    console.log(IdCategoria);
-    return new Promise((res, rej) =>
-        setTimeout(() => {
-            try{
-
-                if(data){
-
-                    if(IdCategoria){
-                        const product = [data.find((Item) => Item.categoria === IdCategoria)]
-                        res(product)
-                    } else{
-                        res(data)
-                    }
-                }
-            } catch(err){
-                rej(err)
-            }
-
-        }, 2000)
-    
-    )
-}
+import { useParams } from "react-router-dom"
+import CircularProgress from '@mui/material/CircularProgress';
 
 const ItemList = () =>{
 
     let { IdCategoria } = useParams();
-    const [products, setProducts] = useState([]);
-    useEffect(()=>{
-        customFetch(Item, IdCategoria)
-        .then((data)=>{
-            setProducts(data);
-        })
-        .catch(()=>{
-            console.log('Error en el cargado de productos');
-        });
 
-    }, [IdCategoria]);
+    const [listProducts, setProductos] = useState([]);
+    const [cargando, setCargando]  = useState([true])
+
+    useEffect (() =>{
+        customFetch (productos).then (respuesta => {setProductos(respuesta)
+            setCargando (false)
+            if (IdCategoria) {
+                const productosFiltrados = productos.filter(productos => productos.categoria === IdCategoria)
+                setProductos(productosFiltrados)
+            } else {
+                setProductos(productos)
+            }
+            })
+    }, [IdCategoria])
+    
+
     return(
         <>
-            <h1>Lista de productos</h1>
-        <div style={styles.divAll}>
-            {products.map((productos)=>
-                <> 
-                    <NavLink to={productos.rutaprod} key={productos.id} style={styles.div}>
-                        <h2>{productos.nombre}</h2>
-                        <img src={productos.img} alt={productos.nombre} style={styles.img}></img>
-                        <h3>${productos.precio}</h3>
-                        <p>{productos.descripcion}</p>
-                    </NavLink>
-                </>
-            )}
+        <h1>Lista de productos</h1>
+        {cargando ?     
+             <CircularProgress/>
+        :
+        (    <div style={styles.divAll}>
+                {listProducts.map((prod, i) => <Item key={`${prod.productos}-${i}`} productos ={prod}/>)}
 
-        </div>
+            </div>)
+        }
         </>
     )
 }

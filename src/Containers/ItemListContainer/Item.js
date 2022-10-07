@@ -1,12 +1,31 @@
-import liv from "../../assets/LivTyler.jpg";
-import charly from "../../assets/Charly.jpg";
-import caballo from "../../assets/caballo.jpg";
+import {NavLink} from "react-router-dom";
 
+const Item = ({productos}) => {
+        return(
+                <NavLink to={`/item/${productos.id}`} key={productos.id} style={styles.div}>
+                        <h2>{productos.nombre}</h2>
+                        <img src={productos.img} alt={productos.nombre} style={styles.img}></img>
+                        <h3>${productos.precio}</h3>
+                        <p>{productos.descripcion}</p>
+                </NavLink>
+        )
+}
 
-const Item = [
-        {id:0, categoria:"actores", nombre: "Liv Tyler", img: liv, descripcion: "Dibujo de la famosa actriz Liv Tyler, del Señor de los Anillos", precio: 2500, rutaprod:"/producto/0"},
-        {id:1, categoria:"cantantes", nombre: "Charly García", img: charly, descripcion: "Dibujo del famoso cantante argentino", precio: 2300, rutaprod:"/producto/1"},
-        {id:2, categoria:"naturaleza", nombre: "Caballo re facha", img: caballo, descripcion: "Un caballito re facha amigo, compralo dale", precio: 3000,  rutaprod:"/producto/2"}
-]
+const styles ={
+        div:{
+                textDecoration: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                textAlign: 'center',
+                flexDirection: 'column',
+                backgroundColor: " #eaeaea ",
+                width: 250,
+                margin: 10,
+            },
+        img:{
+                height: 200,
+                width: "auto",
+        }
+}
 
 export default Item
