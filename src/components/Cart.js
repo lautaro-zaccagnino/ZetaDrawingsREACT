@@ -1,12 +1,40 @@
-import React, { useContext } from 'react'
+import React, { useContext,useState } from 'react'
 import { Context} from "./Context/CartContext"
 import {NavLink} from "react-router-dom";
-
+import { db } from "../firebase/firebase"
+import { collection, addDoc, serverTimestamp, getDocs } from "firebase/firestore"
 
 export const Cart = () => {
 
     const { cart, removeCart, resetCart, totalPrice } = useContext(Context)
+    const [comprador, setComprador] = useState([]);
 
+    const buyer = collection(db, "buyer")
+    getDocs(buyer)
+    .then((data) =>{
+        const comprad = data.docs.map((dataBuyer) => {
+            return {
+                ...dataBuyer.data(),
+                id: dataBuyer.id
+            }
+        })
+        setComprador(comprad)
+    })
+
+    const finalizarCompra = () =>{
+        const ventasCollection = collection(db, "ventas")
+        addDoc(ventasCollection, {
+            nombres: comprador,
+            items: cart,
+            date: serverTimestamp(), 
+            total: totalPrice(),
+        })
+        .then(result =>{
+            console.log(result.id);
+            resetCart()
+        })
+
+    }
 
     return(
         <div style={styles.divMain}>
@@ -32,7 +60,7 @@ export const Cart = () => {
                     <h2>Precio total: ${totalPrice()}</h2>
                     <div>
                         <button onClick={resetCart} style={styles.buttonRed}>Vaciar carrito</button>
-                        <button style={styles.buttonGood}>Comprar</button>
+                        <button onClick={finalizarCompra} style={styles.buttonGood}>Comprar</button>
                     </div>
                 </>
             }
