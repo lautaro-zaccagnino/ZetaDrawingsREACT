@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/images/ZD.jpg'
+import logo from '../../assets/images/ZD.jpg'
 import { NavLink } from "react-router-dom"
 
 const categorias = [

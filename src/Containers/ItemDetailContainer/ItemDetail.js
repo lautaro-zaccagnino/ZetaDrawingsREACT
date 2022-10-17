@@ -1,7 +1,7 @@
 import React, { useState, useContext} from 'react';
-import ItemCount from '../../components/ItemCount'
-import FinCompra from '../../components/FinCompra'
-import { Context} from "../../components/Context/CartContext"
+import ItemCount from '../../components/Cart/ItemCount'
+import FinCompra from '../../components/Cart/FinCompra'
+import { Context} from "../../components/Cart/Context/CartContext"
 
 
 const ItemDetail = ({ item }) =>{
@@ -10,7 +10,7 @@ const ItemDetail = ({ item }) =>{
     const [carrito, setCarrito] = useState([true]);
 
     
-    const compra = (contador) =>{
+    const compra = (contador) =>{                       // Señal de agregar al carrito, envía la informacion del item y la cantidad del mismo al carrito
         setCarrito(false)
         addCart(item, contador)
     }

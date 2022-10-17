@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react';
-/* import { productos } from "../../assets/productos";
-import { customFetch } from "../../assets/customFetch" */
 import Item from "./Item";
 import { useParams } from "react-router-dom"
 import CircularProgress from '@mui/material/CircularProgress';
@@ -13,11 +11,12 @@ const ItemList = () =>{
 
     const [listProducts, setProductos] = useState([]);
     const [cargando, setCargando]  = useState([true])
+
     useEffect (() =>{
         const productsCollection = collection(db, "products")
         console.log(IdCategoria)
 
-        const q = IdCategoria ? query(productsCollection, where("categoria", "==", IdCategoria)) : productsCollection
+        const q = IdCategoria ? query(productsCollection, where("categoria", "==", IdCategoria)) : productsCollection       // Pregunta si IdCategoria exite definido y es igual a alguna categoria para filtrarlo, sino desplega todos los artículos
 
         getDocs(q)
         .then((data) =>{
@@ -32,21 +31,6 @@ const ItemList = () =>{
         .finally(()=>{
             setCargando(false)
         })
-
-
-       /*  customFetch (productos).then (respuesta => {setProductos(respuesta)
-            setCargando (false)
-            if (IdCategoria) {
-                const productosFiltrados = productos.filter(productos => productos.categoria === IdCategoria)
-                setProductos(productosFiltrados)
-            } else {
-                setProductos(productos)
-            }
-        }) */
-
-
-
-
 
     }, [IdCategoria])
     

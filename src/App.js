@@ -1,11 +1,12 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import { ItemListContainer } from './Containers/ItemListContainer/ItemListContainer';
-import { CartWidget } from "./components/CartWidget"
+import { CartWidget } from "./components/NavBar/CartWidget"
 import ItemDetailContainer from './Containers/ItemDetailContainer/ItemDetailContainer';
-import { Cart } from './components/Cart'
-import CartProvider from "./components/Context/CartContext";
+import { Cart } from './components/Cart/Cart'
+import CartProvider from "./components/Cart/Context/CartContext";
+import Footer from "./components/Footer/Footer"
 
 const App = () => {
   return(
@@ -31,6 +32,7 @@ const App = () => {
         </main>
       </CartProvider>
       </BrowserRouter>
+      <Footer/>
     </>
   )
 }

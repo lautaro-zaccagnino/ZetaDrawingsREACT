@@ -1,7 +1,7 @@
 import React, { useContext,useState } from 'react'
 import { Context} from "./Context/CartContext"
 import {NavLink} from "react-router-dom";
-import { db } from "../firebase/firebase"
+import { db } from "../../firebase/firebase"
 import { collection, addDoc, serverTimestamp, getDocs } from "firebase/firestore"
 
 export const Cart = () => {
@@ -9,7 +9,7 @@ export const Cart = () => {
     const { cart, removeCart, resetCart, totalPrice } = useContext(Context)
     const [comprador, setComprador] = useState([]);
 
-    const buyer = collection(db, "buyer")
+    const buyer = collection(db, "buyer")                           // Consume al comprador desde el Firebase
     getDocs(buyer)
     .then((data) =>{
         const comprad = data.docs.map((dataBuyer) => {
@@ -21,7 +21,7 @@ export const Cart = () => {
         setComprador(comprad)
     })
 
-    const finalizarCompra = () =>{
+    const finalizarCompra = () =>{                                  // Envía al Firebase los datos de la compra adjunto al comprador
         const ventasCollection = collection(db, "ventas")
         addDoc(ventasCollection, {
             nombres: comprador,

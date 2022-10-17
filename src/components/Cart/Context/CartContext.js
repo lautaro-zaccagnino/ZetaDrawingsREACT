@@ -6,7 +6,7 @@ const CartProvider = ({children}) =>{
 
     const [cart, setCart] = useState([]);
 
-    const addCart = (product, cantidad) =>{
+    const addCart = (product, cantidad) =>{                         // Añade la cantidad indicada de un producto al carrito
         if(isInCart(product.id)){
             const newCart = cart.map(prod =>{
                 if(prod.id === product.id){
@@ -24,21 +24,23 @@ const CartProvider = ({children}) =>{
     }
 
     
-    const removeCart= (id) =>{
+    const removeCart= (id) =>{                                      // Remueve un elemento seleccionado del carrito  
         setCart(cart.filter( prod => prod.id !== id))
     }
 
-    const isInCart= (id) => {cart.find(prod => prod.id === id);}
+    const isInCart= (id) => {                           // Funcion que resuelve si el producto ya se encontraba o no en el carrito
+        return(cart.find(prod => prod.id === id));
+    }
 
-    const resetCart = () =>{
+    const resetCart = () =>{                                        // Reset del Carrito
         setCart([])
     }
 
-    const totalPrice = () => {
+    const totalPrice = () => {                                      // Precio Total del carrito
         return cart.reduce((acum, prod) => acum += (prod.precio * prod.quantity),0)
     }
 
-    const totalQuantity = () =>{
+    const totalQuantity = () =>{                                    // Cantidad total de Items en el carrito
         return cart.reduce((acum, prod) => acum += prod.quantity,0)
     }
 
