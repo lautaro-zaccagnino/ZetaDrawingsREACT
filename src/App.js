@@ -7,6 +7,7 @@ import ItemDetailContainer from './Containers/ItemDetailContainer/ItemDetailCont
 import { Cart } from './components/Cart/Cart'
 import CartProvider from "./components/Cart/Context/CartContext";
 import Footer from "./components/Footer/Footer"
+import Fondo from "./assets/images/fondo.jpg"
 
 const App = () => {
   return(
@@ -39,7 +40,7 @@ const App = () => {
 
 const styles={
   main:{
-    backgroundColor: "grey",
+    backgroundImage: `url(${Fondo})`,
     display: 'flex',
     flexDirection: "column",
     justifyContent: 'center',

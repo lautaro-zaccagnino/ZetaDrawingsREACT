@@ -35,7 +35,7 @@ function ItemDetailContainer(){
 
     return(
         <section style={styles.section}>
-            <h1>Detalles</h1>
+            <h1 style={styles.h1}>Detalles del Producto</h1>
 
             <>
             {cargando ?     
@@ -58,6 +58,14 @@ const styles={
         flexDirection: 'column',
         alignItems: 'center',
         
+    },
+    h1:{
+        padding: "20px 0px",
+        textAlign: 'center',
+        fontSize: 25,
+        backgroundColor: '#5072fa',
+        width: "100%",
+        color: "white"
     }
 }
 

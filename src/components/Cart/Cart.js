@@ -37,7 +37,10 @@ export const Cart = () => {
     }
 
     return(
+        
         <div style={styles.divMain}>
+            <h2 style={{padding: 20, color: "#383f52", backgroundColor: "#eaeaea", boxShadow: "0px 0px 8px -1px rgba(0,0,0,0.35)"}}>COMPRADOR: {comprador.map(nomb => <span>{nomb.nombre} {nomb.apellido}</span>)}</h2>
+            <h1 style={styles.h1}>Artículos en el carrito</h1>
             <section style={styles.section}>
                 {cart.map(prod => 
                     <div key={prod.id} style={styles.div}>
@@ -51,18 +54,18 @@ export const Cart = () => {
             {cart.length===0  ?
                     (
                         <>
-                            <p>No hay elementos en el carrito</p>
+                            <p style={{fontWeight: "bold", fontSize: 20, padding: 20}}>No hay elementos en el carrito ;(</p>
                             <NavLink to="/" style={styles.buttonVolver}>Volver a la tienda</NavLink>
                         </>
                     )
                 :
-                <>
+                <div style={styles.divCompra}>
                     <h2>Precio total: ${totalPrice()}</h2>
                     <div>
                         <button onClick={resetCart} style={styles.buttonRed}>Vaciar carrito</button>
                         <button onClick={finalizarCompra} style={styles.buttonGood}>Comprar</button>
                     </div>
-                </>
+                </div>
             }
         </div>
     )
@@ -73,10 +76,24 @@ const styles={
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: 50,
+        paddingBottom: 50,
+    },
+    divCompra:{
+        textAlign: 'center',
+        backgroundColor: "#eaeaea",
+        padding: 30,
+        marginTop: 30,
     },
     section:{
         display: 'flex',
+    },
+    h1:{
+        padding: "20px 0px",
+        textAlign: 'center',
+        fontSize: 25,
+        backgroundColor: '#5072fa',
+        width: "100%",
+        color: "white"
     },
     div:{
         display: 'flex',
@@ -85,6 +102,7 @@ const styles={
         margin: 20,
         backgroundColor: "#eaeaea",
         padding: 20,
+        boxShadow: "0px 0px 8px -1px rgba(0,0,0,0.35)",
     },
     img:{
         height: 250,

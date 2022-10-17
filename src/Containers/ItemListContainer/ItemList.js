@@ -37,7 +37,7 @@ const ItemList = () =>{
 
     return(
         <>
-        <h1>Lista de productos</h1>
+        <h1>Nuestros productos</h1>
         {cargando ?     
              <CircularProgress/>
         :
@@ -53,6 +53,8 @@ const ItemList = () =>{
 const styles={
     divAll:{
         display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
     },
     div:{
         textDecoration: 'none',

@@ -50,6 +50,8 @@ const styles={
         margin: 20,
         backgroundColor: "#eaeaea",
         padding: 20,
+        boxShadow: "0px 0px 8px -1px rgba(0,0,0,0.35)",
+        marginBottom: 60,
     },
     img:{
         objectFit: "cover",

@@ -16,10 +16,13 @@ const NavBar = ({children}) => {
             <h1>Zeta Drawings</h1>
         </div>
         <nav>
-            {categorias.map((categoria) => 
-            {return (<NavLink key={categoria.id} style={styles.anchors} to={categoria.ruta}>{categoria.nombre} </NavLink>)}
-            )}
-             <NavLink style={styles.anchors} to="/cart">{children}</NavLink>
+            <h2>Categorías</h2>
+            <div style={styles.cate}>
+                {categorias.map((categoria) => 
+                {return (<NavLink key={categoria.id} style={styles.anchors} to={categoria.ruta}>{categoria.nombre} </NavLink>)}
+                )}
+                <NavLink style={styles.anchors} to="/cart">{children}</NavLink>
+            </div>
         </nav>
  
         </header>
@@ -50,8 +53,10 @@ const styles= {
         textDecoration: "none",
         color: "black",
         fontWeight: 600,
+    },
+    cate:{
+        display: 'flex',
     }
-
 }
 
 

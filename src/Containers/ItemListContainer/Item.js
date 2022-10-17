@@ -6,13 +6,14 @@ const Item = ({productos}) => {
                         <h2>{productos.nombre}</h2>
                         <img src={productos.img} alt={productos.nombre} style={styles.img}></img>
                         <h3>${productos.precio}</h3>
-                        <p>{productos.descripcion}</p>
+                        <p style={styles.p}>{productos.descripcion}</p>
                 </NavLink>
         )
 }
 
 const styles ={
         div:{
+                borderRadius: 2,
                 textDecoration: 'none',
                 display: 'flex',
                 alignItems: 'center',
@@ -21,10 +22,17 @@ const styles ={
                 backgroundColor: " #eaeaea ",
                 width: 250,
                 margin: 10,
+                color: "#3c4575",
+                boxShadow: "0px 0px 8px -1px rgba(0,0,0,0.35)",
             },
+        p:{
+                maxWidth: 230,
+
+        },
         img:{
                 height: 200,
-                width: "auto",
+                objectFit: "cover",
+                maxWidth: 230,
         }
 }
 
