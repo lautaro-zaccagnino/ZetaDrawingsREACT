@@ -22,11 +22,11 @@ const App = () => {
         <main style={styles.main}>
           <section style={styles.section}>
             <Routes>
-                <Route path='%PUBLIC_URL%/' element={<ItemListContainer style={styles.list}/>} />
+                <Route path='ZetaDrawingsREACT/' element={<ItemListContainer style={styles.list}/>} />
 
-                <Route path='%PUBLIC_URL%/categoria/:IdCategoria' element={<ItemListContainer style={styles.list}/>} />
-                <Route path='%PUBLIC_URL%/item/:IdProducto' element={<ItemDetailContainer/>} />
-                <Route path='%PUBLIC_URL%/cart' element={<Cart/>} />
+                <Route path='ZetaDrawingsREACT/categoria/:IdCategoria' element={<ItemListContainer style={styles.list}/>} />
+                <Route path='ZetaDrawingsREACT/item/:IdProducto' element={<ItemDetailContainer/>} />
+                <Route path='ZetaDrawingsREACT/cart' element={<Cart/>} />
 
             </Routes>
           </section>

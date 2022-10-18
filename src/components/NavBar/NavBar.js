@@ -3,16 +3,16 @@ import logo from '../../assets/images/ZD.jpg'
 import { NavLink } from "react-router-dom"
 
 const categorias = [
-    {id:0, nombre:"Actores", ruta:"/categoria/actores"},
-    {id:1, nombre:"Cantantes", ruta:"/categoria/cantantes"},
-    {id:2, nombre:"Naturaleza", ruta:"/categoria/naturaleza"},
+    {id:0, nombre:"Actores", ruta:"ZetaDrawingsREACT/categoria/actores"},
+    {id:1, nombre:"Cantantes", ruta:"ZetaDrawingsREACT/categoria/cantantes"},
+    {id:2, nombre:"Naturaleza", ruta:"ZetaDrawingsREACT/categoria/naturaleza"},
 ]
 
 const NavBar = ({children}) => {
     return (
         <header style={styles.container}>
         <div style={styles.NavImg}>
-        <NavLink to={"%PUBLIC_URL%/"}><img src={logo} alt="logo" style={styles.imagen}/></NavLink>
+        <NavLink to={"ZetaDrawingsREACT/"}><img src={logo} alt="logo" style={styles.imagen}/></NavLink>
             <h1>Zeta Drawings</h1>
         </div>
         <nav>
@@ -21,7 +21,7 @@ const NavBar = ({children}) => {
                 {categorias.map((categoria) => 
                 {return (<NavLink key={categoria.id} style={styles.anchors} to={categoria.ruta}>{categoria.nombre} </NavLink>)}
                 )}
-                <NavLink style={styles.anchors} to="%PUBLIC_URL%/cart">{children}</NavLink>
+                <NavLink style={styles.anchors} to="ZetaDrawingsREACT/cart">{children}</NavLink>
             </div>
         </nav>
  
