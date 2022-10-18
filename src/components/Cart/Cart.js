@@ -55,7 +55,7 @@ export const Cart = () => {
                     (
                         <>
                             <p style={{fontWeight: "bold", fontSize: 20, padding: 20}}>No hay elementos en el carrito ;(</p>
-                            <NavLink to="/" style={styles.buttonVolver}>Volver a la tienda</NavLink>
+                            <NavLink to="%PUBLIC_URL%/" style={styles.buttonVolver}>Volver a la tienda</NavLink>
                         </>
                     )
                 :

@@ -5,10 +5,10 @@ import { NavLink } from "react-router-dom"
 const FinCompra = () => {
     return(
         <div>
-          <NavLink to="/">
+          <NavLink to="%PUBLIC_URL%/">
             <button style={styles.botonVerde}>Seguir Comprando</button>
           </NavLink>
-          <NavLink to="/cart">
+          <NavLink to="%PUBLIC_URL%/cart">
                   <button style={styles.botonAzul}>Finalizar compra</button>
           </NavLink>
         </div>

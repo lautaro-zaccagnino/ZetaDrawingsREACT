@@ -12,7 +12,7 @@ const NavBar = ({children}) => {
     return (
         <header style={styles.container}>
         <div style={styles.NavImg}>
-        <NavLink to={"/"}><img src={logo} alt="logo" style={styles.imagen}/></NavLink>
+        <NavLink to={"%PUBLIC_URL%/"}><img src={logo} alt="logo" style={styles.imagen}/></NavLink>
             <h1>Zeta Drawings</h1>
         </div>
         <nav>
@@ -21,7 +21,7 @@ const NavBar = ({children}) => {
                 {categorias.map((categoria) => 
                 {return (<NavLink key={categoria.id} style={styles.anchors} to={categoria.ruta}>{categoria.nombre} </NavLink>)}
                 )}
-                <NavLink style={styles.anchors} to="/cart">{children}</NavLink>
+                <NavLink style={styles.anchors} to="%PUBLIC_URL%/cart">{children}</NavLink>
             </div>
         </nav>
  
