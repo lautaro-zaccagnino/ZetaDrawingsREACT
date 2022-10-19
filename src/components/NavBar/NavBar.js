@@ -21,7 +21,7 @@ const NavBar = ({children}) => {
                 {categorias.map((categoria) => 
                 {return (<NavLink key={categoria.id} style={styles.anchors} to={categoria.ruta}>{categoria.nombre} </NavLink>)}
                 )}
-                <NavLink style={styles.anchors} to="ZetaDrawingsREACT/cart">{children}</NavLink>
+                <NavLink style={styles.anchors} to="/ZetaDrawingsREACT/cart">{children}</NavLink>
             </div>
         </nav>
  
